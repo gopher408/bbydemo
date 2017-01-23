@@ -1,0 +1,3 @@
+AWSDataStore search query:{'query': {'bool': {'filter': [{'term': {'businessID': 'nordstrom'}}], 'should': [], 'must': [{'match': {'colors': {'query': 'gold'}}}, {'bool': {'should': [{'match': {'categories': {'query': 'sandal'}}}, {'match': {'categories': {'query': 'sandals'}}}]}}, {'bool': {'should': []}}]}}}
+
+AWSDataStore search query:{'query': {'bool': {'filter': [{'term': {'businessID': 'nordstrom'}}], 'should': [], 'must': [{'match': {'colors': {'query': 'gold'}}}, {'bool': {'should': [{'match': {'categories': {'query': 'sandal'}}}, {'match': {'categories': {'query': 'sandals'}}}]}}, {'bool': {'should': []}}, {'bool': {'should': [{'match': {'sizes': {'query': 'size6size'}}}, {'match': {'size_desc': {'query': '6'}}}]}}]}}}

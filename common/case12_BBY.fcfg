@@ -1,0 +1,656 @@
+##
+## Deliberately naive string-based grammar for
+## deriving SQL queries from English
+##
+## Author: Ewan Klein <ewan@inf.ed.ac.uk>
+## URL: <http://nltk.sourceforge.net>
+## For license information, see LICENSE.TXT
+
+# Title: case12.fcfg
+# Edited by Ray-Hon Sun <ray@startup8.com>
+
+% start S
+
+S[SEM=(?np + ?vp)] -> NP[SEM=?np] VP[SEM=?vp]
+S[SEM=?np] -> NP[SEM=?np]
+S[SEM=?vp] -> VP[SEM=?vp]
+VP[SEM=(?v + ?ap)] -> IV[SEM=?v] AP[SEM=?ap]
+VP[SEM=(?a + ?jp)] -> A[SEM=?a] JP[SEM=?jp]
+VP[SEM=(?a + ?np)] -> A[SEM=?a] NP[SEM=?np]
+VP[SEM=(?a + ?tp)] -> A[SEM=?a] TP[SEM=?tp]
+VP[SEM=?ap] -> AP[SEM=?ap]
+VP[SEM=?pp] -> PP[SEM=?pp]
+VP[SEM=?a] -> A[SEM=?a]
+AP[SEM=(?a + ?pp)] -> A[SEM=?a] PP[SEM=?pp]
+AP[SEM=(?a + ?np)] -> A[SEM=?a] NP[SEM=?np]
+AP[SEM=(?a + ?jp)] -> A[SEM=?a] JP[SEM=?jp]
+AP[SEM=(?a + ?ap)] -> A[SEM=?a] AP[SEM=?ap]
+AP[SEM=(?np + ?a)] -> NP[SEM=?np] A[SEM=?a]
+AP[SEM=(?np + ?vp)] -> NP[SEM=?np] VP[SEM=?vp]
+JP[SEM=(?jj + ?np)] -> JJ[SEM=?jj] NP[SEM=?np]
+JP[SEM=(?jj + ?pp)] -> JJ[SEM=?jj] PP[SEM=?pp]
+JP[SEM=(?jj + ?jp)] -> JJ[SEM=?jj] JP[SEM=?jp]
+JP[SEM=?jj] -> JJ[SEM=?jj]
+JP[SEM=(?np1 + ?np2)] -> NP[SEM=?np1] NP[SEM=?np2]
+NP[SEM=(?det + ?jp)] -> Det[SEM=?det] JP[SEM=?jp]
+NP[SEM=(?det + ?rb)] -> Det[SEM=?det] RB[SEM=?rb]
+NP[SEM=(?det + ?pp)] -> Det[SEM=?det] PP[SEM=?pp]
+NP[SEM=(?np + ?pp)] -> NP[SEM=?np] PP[SEM=?pp]
+NP[SEM=(?jj + ?jp)] -> JJ[SEM=?jj] JP[SEM=?jp]
+NP[SEM=(?jj + ?np)] -> JJ[SEM=?jj] NP[SEM=?np]
+NP[SEM=(?t + ?jp)] -> T[SEM=?t] JP[SEM=?jp]
+NP[SEM=(?np1 + ?np2)] -> NP[SEM=?np1] NP[SEM=?np2]
+NP[SEM=(?np1 + ?cc + ?np2)] -> NP[SEM=?np1] CC[SEM=?cc] NP[SEM=?np2]
+NP[SEM= (?jj + ?np)] -> JJ[SEM=?jj] NP[SEM=?np]
+NP[SEM= (?np + ?ad)] -> NP[SEM=?np] AD[SEM=?ad]
+NP[SEM=?n] -> N[SEM=?n]
+NP[SEM=?det] -> Det[SEM=?det]
+NP[SEM=?tp] -> TP[SEM=?tp]
+NP[SEM=?pp] -> PP[SEM=?pp]
+NP[SEM=?jj] -> JJ[SEM=?jj]
+NP[SEM=?rb] -> RB[SEM=?rb]
+NP[SEM=(?np + ?tp)] -> NP[SEM=np] TP[SEM=?tp]
+PP[SEM=(?p + ?np)] -> P[SEM=?p] NP[SEM=?np]
+PP[SEM=(?p + ?jp)] -> P[SEM=?p] JP[SEM=?jp]
+PP[SEM=(?p + ?vp)] -> P[SEM=?p] VP[SEM=?vp]
+PP[SEM=?p] -> P[SEM=?p]
+TP[SEM=(?t + ?np)] -> T[SEM=?t] NP[SEM=?np]
+TP[SEM=(?t + ?jp)] -> T[SEM=?t] JP[SEM=?jp]
+
+## RHS: Grammar can handle something | something |... but cannot handle something | | something ...
+## This is a NLTK bug
+
+# COLOR BEGIN
+# COLOR END
+JJ[SEM='color="acqua"'] -> 'acqua'
+JJ[SEM='color="apricot"'] -> 'apricot'
+JJ[SEM='color="azure"'] -> 'azure'
+JJ[SEM='color="black"'] -> 'black'
+JJ[SEM='color="blue"'] -> 'blue' 
+JJ[SEM='color="brown"'] -> 'brown'
+JJ[SEM='color="chesnut"'] -> 'chesnut'
+JJ[SEM='color="copper"'] -> 'copper'
+JJ[SEM='color="cyan"'] -> 'cyan'
+JJ[SEM='color="gold"'] -> 'gold'
+JJ[SEM='color="gray"'] -> 'gray'
+JJ[SEM='color="green"'] -> 'green'
+JJ[SEM='color="indigo"'] -> 'indigo'
+JJ[SEM='color="iris"'] -> 'iris'
+JJ[SEM='color="haze"'] -> 'haze'
+JJ[SEM='color="khaki"'] -> 'khaki'
+JJ[SEM='color="lava"'] -> 'lava'
+JJ[SEM='color="lavender"'] -> 'lavender'
+JJ[SEM='color="lava"'] -> 'lava'
+JJ[SEM='color="lemon"'] -> 'lemon'
+JJ[SEM='color="licorice"'] -> 'licorice'
+JJ[SEM='color="lime"'] -> 'lime'
+JJ[SEM='color="magenta"'] -> 'magenta'
+JJ[SEM='color="magnolia"'] -> 'magnolia'
+JJ[SEM='color="mahogany"'] -> 'mahogany'
+JJ[SEM='color="maize"'] -> 'maize'
+JJ[SEM='color="mango"'] -> 'mango'
+JJ[SEM='color="mandarin"'] -> 'mandarin'
+JJ[SEM='color="manuve"'] -> 'manuve'
+JJ[SEM='color="marigold"'] -> 'marigold'
+JJ[SEM='color="melon"'] -> 'melon'
+JJ[SEM='color="orange"'] -> 'orange'
+JJ[SEM='color="orchid"'] -> 'orchid'
+JJ[SEM='color="pacific blue"'] -> 'pacific_blue'
+JJ[SEM='color="pear"'] -> 'pear'
+JJ[SEM='color="pearl"'] -> 'pearl'
+JJ[SEM='color="peridot"'] -> 'peridot'
+JJ[SEM='color="pine"'] -> 'pine'
+JJ[SEM='color="pineapple"'] -> 'pineapple'
+JJ[SEM='color="pink"'] -> 'pink'
+JJ[SEM='color="platinum"'] -> 'platinum'
+JJ[SEM='color="plum"'] -> 'plum'
+JJ[SEM='color="popstar"'] -> 'popstar'
+JJ[SEM='color="prune"'] -> 'prune'
+JJ[SEM='color="pumkin"'] -> 'pumkin'
+JJ[SEM='color="purple"'] -> 'purple'
+JJ[SEM='color="quartz"'] -> 'quartz'
+JJ[SEM='color="raspberry"'] -> 'raspberry'
+JJ[SEM='color="red"'] -> 'red'
+JJ[SEM='color="rose"'] -> 'rose'
+JJ[SEM='color="russet"'] -> 'russet'
+JJ[SEM='color="saffron"'] -> 'saffron'
+JJ[SEM='color="sage"'] -> 'sage'
+JJ[SEM='color="salmon"'] -> 'salmon'
+JJ[SEM='color="sand"'] -> 'sand'
+JJ[SEM='color="scarlet"'] -> 'scarlet'
+JJ[SEM='color="silver"'] -> 'silver'
+JJ[SEM='color="sinopia"'] -> 'sinopia'
+JJ[SEM='color="sky blue"'] -> 'sky_blue'
+JJ[SEM='color="snow"'] -> 'snow'
+JJ[SEM='color="suger plum"'] -> 'suger_plum'
+JJ[SEM='color="sunglow"'] -> 'sunglow'
+JJ[SEM='color="sunny"'] -> 'sunny'
+JJ[SEM='color="sunglow"'] -> 'sunglow'
+JJ[SEM='color="tan"'] -> 'tan'
+JJ[SEM='color="tomato"'] -> 'tomato'
+JJ[SEM='color="turquoise"'] -> 'turquoise'
+JJ[SEM='color="tulip"'] -> 'tulip'
+JJ[SEM='color="tuscan"'] -> 'tuscan'
+JJ[SEM='color="tuscany"'] -> 'tuscany'
+JJ[SEM='color="ube"'] -> 'ube'
+JJ[SEM='color="umber"'] -> 'umber'
+JJ[SEM='color="uroblin"'] -> 'uroblin'
+JJ[SEM='color="vanilla"'] -> 'vanilla'
+JJ[SEM='color="veronica"'] -> 'veronica'
+JJ[SEM='color="violet"'] -> 'violet'
+JJ[SEM='color="viridian"'] -> 'viridian'
+JJ[SEM='color="wenge"'] -> 'wenge'
+JJ[SEM='color="wheat"'] -> 'wheat'
+JJ[SEM='color="white"'] -> 'white'
+JJ[SEM='color="wine"'] -> 'wine'
+JJ[SEM='color="wisteria"'] -> 'wisteria'
+JJ[SEM='color="xanadu"'] -> 'xanadu'
+JJ[SEM='color="yellow"'] -> 'yellow'
+JJ[SEM='color="zaffre"'] -> 'zaffer'
+JJ[SEM='color="zomp"'] -> 'zomp'
+
+
+# SELECTION BEGIN
+JJ[SEM='rownum=1'] -> 'first'   | '1st'  | '#1'
+JJ[SEM='rownum=2'] -> 'second'  | '2rd'  | '#2'
+JJ[SEM='rownum=3'] -> 'third'   | '3rd'  | '#3'
+JJ[SEM='rownum=4'] -> 'forth'   | '4th'  | '#4'
+JJ[SEM='rownum=5'] -> 'fifth'   | '5th'  | '#5'
+JJ[SEM='rownum=6'] -> 'sixth'   | '6th'  | '#6'
+JJ[SEM='rownum=7'] -> 'seventh' | '7th'  | '#7'
+JJ[SEM='rownum=8'] -> 'eighth'  | '8th'  | '#8'
+JJ[SEM='rownum=9'] -> 'ninth'   | '9th'  | '#9'
+JJ[SEM='rownum=10'] -> 'tenth'  | '10th' | '#10'
+JJ[SEM='rownum=11'] -> 'eleventh'   | '11th' | '#11'
+JJ[SEM='rownum=12'] -> 'twelfth'    | '12th' | '#12'
+JJ[SEM='rownum=13'] -> 'thirteenth' | '13th' | '#13'
+JJ[SEM='rownum=14'] -> 'fourteenth' | '14th' | '#14'
+JJ[SEM='rownum=15'] -> 'fifteenth'  | '15th' | '#15'
+JJ[SEM='rownum=16'] -> 'sixteenth'  | '16th' | '#16'
+JJ[SEM='rownum=17'] -> 'seventeenth'  | '17th' | '#17'
+JJ[SEM='rownum=18'] -> 'eighteenth'   | '18th' | '#18'
+JJ[SEM='rownum=19'] -> 'ninettenth'   | '19th' | '#19'
+JJ[SEM='rownum=20'] -> 'twentieth'    | '20th' | '#20'
+JJ[SEM='rownum=21'] -> 'twenty_first' | 'twenty-first' | '21st' | '#12'
+JJ[SEM='rownum=29'] -> 'twenty_second' | 'twenty-second' | '22nd' | '#22'
+JJ[SEM='rownum=23'] -> 'twenty_third' | 'twenty-third' | '23rd' | '#23'
+JJ[SEM='rownum=24'] -> 'twenty_forth' | 'twenty-forth' | '24th' | '#24'
+JJ[SEM='rownum=25'] -> 'twenty_fifth' | 'twenty-fifth' | '25th' | '#25'
+JJ[SEM='rownum=26'] -> 'twenty_sixth' | 'twenty-sixth' | '26th' | '#26'
+JJ[SEM='rownum=27'] -> 'twenty_seventh' | 'twenty-seventh' | '27th' | '#27'
+JJ[SEM='rownum=28'] -> 'twenty_eighth'  | 'twenty-eighth'  | '28th' | '#28'
+JJ[SEM='rownum=29'] -> 'twenty_ninth' | 'twenty-ninth' | '29th' | '#29'
+JJ[SEM='rownum=30'] -> 'thirtieth'    | '30th' | '#30'
+JJ[SEM='rownum=31'] -> 'thirty_first' | 'thirty-first' | '31th' | '#31'
+JJ[SEM='descriptor="last"'] -> 'last'
+# SELECTION END
+
+# STYLE BEGIN
+# STYLE END
+JJ[SEM='style="tall"'] -> 'tall'
+JJ[SEM='style="long"'] -> 'long'
+JJ[SEM='style="short"'] -> 'short'
+
+
+# SIZE STRING BEGIN
+# SIZE STRING END
+JJ[SEM='size="large"']  -> 'l' | 'large' 
+JJ[SEM='size="medium"'] -> 'm' | 'medium' | 'medium-sized' 
+JJ[SEM='size="small"']  -> 's' | 'small' 
+JJ[SEM='size="x-large"'] -> 'xl' | 'x-large'
+JJ[SEM='size="xx-large"'] -> 'xxl' | 'xx-large'
+JJ[SEM='size="xxx-large"'] -> 'xxxl' | 'xxx-large'
+JJ[SEM='size="x-small"'] -> 'xs' | 'x-small' 
+JJ[SEM='size="1XB"'] -> '1xb'
+JJ[SEM='size="2XB"'] -> '2xb'
+JJ[SEM='size="3XB"'] -> '3xb'
+JJ[SEM='size="4XB"'] -> '4xb'
+JJ[SEM='size="5XB"'] -> '5xb'
+
+# SIZE NUMBER BEGIN
+# SIZE NUMBER END
+
+# the following are for clothes, shoes, and accessories
+N[SEM='size="4.5"']  -> '4.5'
+N[SEM='size="5.5"']  -> '5.5'
+N[SEM='size="6.5"']  -> '6.5'
+N[SEM='size="7.5"']  -> '7.5'
+N[SEM='size="8.5"']  -> '8.5'
+N[SEM='size="9.5"']  -> '9.5'
+N[SEM='size="10.5"'] -> '10.5'
+N[SEM='size="11.5"'] -> '11.5'
+N[SEM='size="12.5"'] -> '12.5'
+N[SEM='size="13.5"'] -> '13.5'
+N[SEM='size="14.5"'] -> '14.5'
+N[SEM='size="15.5"'] -> '15.5'
+N[SEM='size="16.5"'] -> '16.5'
+N[SEM='size="17.5"'] -> '17.5'
+
+# laptop size
+N[SEM='size="10"'] -> '10.1'
+N[SEM='size="11"'] -> '11.6'
+N[SEM='size="13"'] -> '13.3'
+N[SEM='size="14"'] -> '14.1'
+N[SEM='size="15"'] -> '15.6'
+N[SEM='size="17"'] -> '17.3'
+
+N[SEM='number="0"']  -> '0'  | 'zero'
+N[SEM='number="1"']  -> '1'  | 'one'
+N[SEM='number="2"']  -> '2'  | 'two'
+N[SEM='number="3"']  -> '3'  | 'three'
+N[SEM='number="4"']  -> '4'  | 'four'
+N[SEM='number="5"']  -> '5'  | 'five'
+N[SEM='number="6"']  -> '6'  | 'six'
+N[SEM='number="7"']  -> '7'  | 'seven'
+N[SEM='number="8"']  -> '8'  | 'eight'
+N[SEM='number="9"']  -> '9'  | 'nine'
+N[SEM='number="10"'] -> '10' | 'ten'
+N[SEM='number="11"'] -> '11' | 'eleven' 
+N[SEM='number="12"'] -> '12' | 'twelve' 
+N[SEM='number="13"'] -> '13' | 'thirteen'
+N[SEM='number="14"'] -> '14' | 'fourteen'
+N[SEM='number="15"'] -> '15' | 'fifteen' 
+N[SEM='number="16"'] -> '16' | 'sixteen'
+N[SEM='number="17"'] -> '17' | 'seventeen'
+N[SEM='number="18"'] -> '18' | 'eighteen'
+N[SEM='number="19"'] -> '19' | 'nineteen'
+N[SEM='number="20"'] -> '20' | 'twenty'
+N[SEM='number="21"'] -> '21' | 'twenty_one' 
+N[SEM='number="22"'] -> '22' | 'twenty_two'
+N[SEM='number="23"'] -> '23' | 'twenty_three'
+N[SEM='number="24"'] -> '24' | 'twenty_four'
+N[SEM='number="25"'] -> '25' | 'twenty_five'
+N[SEM='number="26"'] -> '26' | 'twenty_six'
+N[SEM='number="27"'] -> '27' | 'twenty_seven'
+N[SEM='number="28"'] -> '28' | 'twenty_eight'
+N[SEM='number="29"'] -> '29' | 'twenty_nine'
+N[SEM='number="30"'] -> '30' | 'thirty'
+N[SEM='number="31"'] -> '31' | 'thirty_first'
+
+# TV size
+N[SEM='size="32"'] -> '32'
+N[SEM='size="39"'] -> '39'
+N[SEM='size="40"'] -> '40'
+N[SEM='size="42"'] -> '42'
+N[SEM='size="43"'] -> '43'
+N[SEM='size="47"'] -> '47'
+N[SEM='size="48"'] -> '48'
+N[SEM='size="50"'] -> '50'
+N[SEM='size="55"'] -> '55'
+N[SEM='size="60"'] -> '60'
+N[SEM='size="70"'] -> '70'
+N[SEM='size="75"'] -> '75'
+N[SEM='size="78"'] -> '78'
+N[SEM='size="85"'] -> '85'
+N[SEM='in'] -> 'inches' | 'inch' | 'in.' | 'in'
+N[SEM='mm'] -> 'mm' 
+
+# OCCASION BEGIN
+# OCCASION END
+N[SEM='occasion="wedding"'] -> 'wedding'
+N[SEM='occasion="picnic"'] -> 'picnic'
+N[SEM='occasion="cocktail"'] -> 'cocktail'
+N[SEM='occasion="spring"'] -> 'spring'
+N[SEM='occasion="summer"'] -> 'summer'
+N[SEM='occasion="autumn"'] -> 'autumn'
+N[SEM='occasion="winter"'] -> 'winter'
+N[SEM='occasion="party"'] -> 'party'
+N[SEM='occasion="bride"'] -> 'bride' | 'bridal'
+N[SEM='occasion="work"'] -> 'work'
+N[SEM='occasion="casual"'] -> 'casual'
+N[SEM='occasion="homecoming"'] -> 'homecoming'
+N[SEM='occasion="night out"'] -> 'night_out'
+N[SEM='occasion="bridesmaid"'] -> 'bridesmaid'
+N[SEM='occasion="formal"'] -> 'formal'
+
+
+# DESCRIPTION BEGIN
+# DESCRIPTION END
+N[SEM='descriptor="old fashion"'] -> 'old_fashion' | 'old-fashion'
+N[SEM='descriptor="6 inch"'] -> '6_inch'
+#how to distinct if it is goods or  just a descriptor 
+N[SEM='goods="accessory:buckle"'] -> 'buckle'
+N[SEM='goods="glasses:sunglasses"'] -> 'sunglasses' | 'sun_glasses'
+N[SEM='descriptor="dinner"'] -> 'dinner'
+N[SEM='descriptor="sport"'] -> 'sport'
+JJ[SEM=''] -> 'new'
+JJ[SEM='descriptor="lace"'] -> 'lacy' 
+JJ[SEM='style="used"'] -> 'used'
+JJ[SEM='style="comfort"'] -> 'comfort'
+JJ[SEM='style="old fashion"'] -> 'old_fashioned' | 'old-fashioned'
+JJ[SEM='style="long sleeve"'] -> 'long_sleeve' | 'long-sleeve'
+JJ[SEM='style="short sleeve"'] -> 'short_sleeve' | 'short-sleeve'
+
+JJ[SEM='style="pageant"'] -> 'pageant'
+N[SEM='group="boys"'] -> 'boys' | 'boy'
+N[SEM='group="girls"'] -> 'girls' | 'girl'
+N[SEM='group="flower girls"'] -> 'flower_girls' | 'flower_girl'
+N[SEM='group="toddlers"'] -> 'toddlers' | 'toddler'
+N[SEM='group="juniors"'] -> 'juniors' | 'junior'
+N[SEM='group="young adults"'] -> 'young_adults' | 'young_adult'
+N[SEM='group="men"'] -> 'men' | 'man'
+N[SEM='group="women"'] -> 'women' | 'woman'
+
+# RHS: plural form should be taken automatically
+N[SEM='goods="shoe:bootie"'] -> 'booties' | 'bootie'
+N[SEM='goods="flat:flat"'] -> 'flats' | 'flat'
+N[SEM='goods="shoe:loafer"'] -> 'loafers' | 'loafer'
+N[SEM='goods="pump:pump"'] -> 'pumps' | 'pump'
+N[SEM='goods="sandal:sandal"'] -> 'sandals' | 'sandal'
+N[SEM='goods="slipper:slipper"'] -> 'slippers' | 'slipper'
+N[SEM='goods="sneaker:sneaker"'] -> 'sneakers' | 'sneaker'
+N[SEM='goods="shoe:wedge"'] -> 'wedge' | 'wedges'
+N[SEM='goods="boot:boot"'] -> 'boots' | 'boot'
+N[SEM='goods="shoe:shoe"'] -> 'shoes' | 'shoe'
+N[SEM='goods="heel:heel"'] -> 'heels' | 'heel'
+N[SEM='goods="handbag:handbag"']  -> 'handbags'    | 'handbag'
+N[SEM='goods="dress:dress"']      -> 'dresses'     | 'dress'
+N[SEM='goods="dress:outfit"']     -> 'outfits'     | 'outfit'
+N[SEM='goods="pants:pants"']        -> 'pants'       | 'pant' | 'trousers' | 'trouser' 
+N[SEM='goods="pants:jeans"']       -> 'jeans'       
+N[SEM='goods="pants:leggins"']     -> 'leggins'       
+N[SEM='goods="shirt:shirt']       -> 'shirts'      | 'shirt'
+N[SEM='goods="skirt:skirt"']      -> 'skirts'      | 'skirt'
+N[SEM='goods="shirt:t-shirt"']    -> 't-shirts'    | 't-shirt' | 'tshirts' | 'tshirt' | 't_shirts' | 't_shirt'
+N[SEM='goods=""polo shirt":"polo shirt"'] -> 'polo_shirts' | 'polo_shirt'  | 'polos' | 'polo'
+
+#N[SEM='goods="shoe:oxford"'] -> 'oxford'
+N[SEM='style="oxford"'] -> 'oxford'
+
+# PRODUCT BEGIN
+# PRODUCT END
+
+
+# BRAND BEGIN
+# BRAND END
+# the following are for clothes, shoes, and accessories
+N[SEM='brand="chanel"'] -> 'chanel'
+N[SEM='brand="gucci"'] -> 'gucci'
+N[SEM='brand="nike"'] -> 'nike'
+N[SEM='brand="calvin klein"'] -> 'calvin_klein' | 'calvinklein' | 'ck' | 'c-k'
+N[SEM='brand="michael kors"'] -> 'michael_kors' | 'michaelkors' | 'mk' | 'm-k'
+N[SEM='brand="ralph lauren"'] -> 'ralph_lauren' | 'ralphlauren' | 'rl' | 'r-l'
+N[SEM='brand="tory burch"'] -> 'tory_burch'
+N[SEM='brand="ray-ban"'] -> 'ray-ban'
+
+
+# LOCATION BEGIN
+# LOCATION END
+N[SEM='location="Cupertino"'] -> 'cupertino'
+N[SEM='location="Palo Alto"'] -> 'palo_alto'
+N[SEM='location="Stanford"'] -> 'stanford' | 'the_stanford'
+N[SEM='location="San Mateo"'] -> 'san_mateo'
+N[SEM='location="Santa Bruno"'] -> 'santa_bruno'
+N[SEM='location="Santa Clara"'] -> 'santa_clara'
+N[SEM='location="San Jose"'] -> 'san_jose'
+N[SEM='location="San Francisco"'] -> 'san_francisco' | 'sf'
+N[SEM='location="Walnut Creek"'] -> 'walnut_creek'
+N[SEM='location="New York"'] -> 'new_york' | 'big_apple' | 'newyork'
+N[SEM='location="Newark"'] -> 'newark'
+N[SEM='location="New Jersey"'] -> 'new_jersey' | 'jersey'
+N[SEM='location="Bronx"'] -> 'bronx'
+N[SEM='location="Manhattan"'] -> 'manhattan'
+N[SEM='location="Midtown"'] -> 'midtown'
+N[SEM='location="Plushing"'] -> 'plushing'
+N[SEM='location="Queens"'] -> 'queens'
+N[SEM='location="Brooklyn"'] -> 'brooklyn'
+N[SEM='location="Hempstead"'] -> 'hempstead'
+N[SEM='location="Bellevue"'] -> 'bellevue'
+N[SEM='location="Richfield"'] -> 'richfield'
+
+
+# LOCATION NAME BEGIN
+# LOCATION NAME END
+N[SEM='location="Stanford"'] -> 'stanford_mall' | 'stanford_shopping_mall'
+N[SEM='location="Stoneridge Mall"'] -> 'stoneridge_mall' | 'stoneridge'
+N[SEM='location="Broadway"'] -> 'broadway' 
+N[SEM='location="Broadway Plaza"'] -> 'broadway_plaza' 
+
+N[SEM='floor=""'] -> 'floor' 
+
+# ZIPCODE BEGIN
+# ZIPCODE END
+N[SEM='zipcode="94301"'] -> '94301'
+N[SEM='zipcode="94302"'] -> '94302'
+N[SEM='zipcode="94303"'] -> '94303'
+N[SEM='zipcode="94304"'] -> '94304'
+N[SEM='zipcode="94305"'] -> '94305'
+N[SEM='zipcode="94306"'] -> '94306'
+
+
+# DATETIME BEGIN
+N[SEM='datetime="day"'] -> 'day' | 'days' 
+N[SEM='datetime="week"'] -> 'weekday' | 'weekdays' | 'week' 
+#N[SEM='datetime="week"'] -> 'weekday' | 'weekdays' | 'week' | 'this_week'
+N[SEM='datetime="month"'] -> 'month' | 'months'
+N[SEM='datetime="year"'] -> 'year' | 'years'  
+N[SEM='datetime="time"'] -> 'hour' | 'hours' |'business_hours' | 'time'
+N[SEM='datetime="date"'] -> 'date' | 'dates' | 'datetime'
+RB[SEM='datetime="now"'] -> 'now' | 'right_now'
+N[SEM='datetime="today"'] -> 'today'
+N[SEM='datetime="morning"'] -> 'morning'
+#N[SEM='datetime="noon"'] -> 'noon' | 'lunch_time' | 'lunch_break' | 'lunch_hour' | 'lunch_hours' 
+N[SEM='datetime="12:00"'] -> 'noon' | 'lunch_time' | 'lunch_break' | 'lunch_hour' | 'lunch_hours' 
+N[SEM='datetime="afternoon"'] -> 'afternoon'
+N[SEM='datetime="evening"'] -> 'evening'
+N[SEM='datetime="night"'] -> 'night'
+N[SEM='datetime="today,morning"'] -> 'this_morning'
+N[SEM='datetime="today,afternoon"'] -> 'this_afternoon'
+N[SEM='datetime="today,evening"'] -> 'this_evening'
+N[SEM='datetime="today,night"'] -> 'tonight'
+N[SEM='datetime=tomorrow'] -> 'tomorrow'
+N[SEM='datetime="yesterday"'] -> 'yesterday'
+N[SEM='datetime="monday"'] -> 'monday' | 'mon'
+N[SEM='datetime="tuesday"'] -> 'tuesday' | 'tue'
+N[SEM='datetime="wednesday"'] -> 'wednesday' | 'wed'
+N[SEM='datetime="thursday"'] -> 'thursday' | 'thu' | 'thr'
+N[SEM='datetime="friday"'] -> 'friday' | 'fri'
+N[SEM='datetime="saturday"'] -> 'saturday' | 'sat'
+N[SEM='datetime="sunday"'] -> 'sunday' | 'sun'
+N[SEM='datetime="weekend"'] -> 'weekend'
+N[SEM='datetime="weekend"'] -> 'weekend'
+N[SEM='datetime="last week"'] -> 'last_week'
+# DATETIME END
+
+# HOLDAY BEGIN
+N[SEM='time="new year"'] -> 'new_year'
+N[SEM='time="MLK day"'] ->  'mlk' | 'martin_luther_king' | 'martin_luther_king_jr'
+N[SEM='time="presidents day"'] -> 'presidents_day'
+N[SEM='time="st patrick day"'] -> 'st_patrick' | 'saint_patrick'
+N[SEM='time="memorial day"'] -> 'memorial_day'
+N[SEM='time="independence day"'] -> 'independence_day' | 'july_4th' | 'july_fourth' | 'jul_4th' | '0704'
+N[SEM='time="labor day"'] -> 'labor_day'
+N[SEM='time="colmbus day"'] -> 'colmbus_day'
+N[SEM='time="thanksgiving"'] -> 'thanksgiving_day' | 'thanksgiving'
+N[SEM='time="christmas"'] -> 'christmas' | 'christmas_eve' | 'xmas' | "x'mas"
+# HOLIDAY END
+
+N[SEM='month="1"'] -> 'jan'  | 'january'
+N[SEM='month="2"'] -> 'feb'  | 'february'
+N[SEM='month="3"'] -> 'mar'  | 'march'
+N[SEM='month="4"'] -> 'apr'  | 'april'
+N[SEM='month="5"'] -> 'may' 
+N[SEM='month="6"'] -> 'jun'  | 'june'
+N[SEM='month="7"'] -> 'jul'  | 'july'
+N[SEM='month="8"'] -> 'aug'  | 'august'
+N[SEM='month="9"'] -> 'sep'  | 'september'
+N[SEM='month="10"'] -> 'oct' | 'october'
+N[SEM='month="11"'] -> 'nov' | 'november'
+N[SEM='month="12"'] -> 'dec' | 'december'
+
+
+## Linguists shall handle synomyms, acronyms, verb tenses etc.
+
+N[SEM='action="ask price"'] -> 'price' | 'cost'
+RB[SEM='action="ask price"'] -> 'how_much' | 'how_expensive' | 'how_costly' | 'how_cheap'
+RB[SEM='action="ask color"'] -> 'color'
+RB[SEM='action="ask size"'] -> 'size'
+#RB[SEM='action="find"'] -> 'size'
+Det[SEM='action="ask time"'] -> 'what_time' | 'what_times'
+Det[SEM='action="ask time"'] -> 'how_early' | 'how_soon' | 'how_long'
+Det[SEM='descriptor="how late"'] -> 'how_late' 
+Det[SEM='action="ask time"'] -> 'when'
+Det[SEM='action="ask product"'] -> 'which'
+Det[SEM='action="ask place"'] -> 'where'
+#Det[SEM='action="ask place"'] -> 'what_floor'
+Det[SEM=''] -> 'what_floor'
+#JJ[SEM='action="rownum>limits"']-> 'more'
+JJ[SEM='action="more"']-> 'more'
+#N[SEM='action="rownum>limits"']-> 'more'
+N[SEM='action="more"']-> 'more'
+#N[SEM='action="find store"'] -> 'store' | 'bestbuy' |  'nordstrom' | 'target' | 'best_buy'
+#N[SEM='action="find store"'] -> 'store' | 'direction' 
+N[SEM='action="find store"'] -> 'direction' 
+N[SEM=''] -> 'store' 
+N[SEM='store="nordstrom"'] -> 'nordstrom' 
+N[SEM='store="best Buy"'] -> 'bestbuy' | 'best_buy' 
+N[SEM='store="target"'] -> 'target' 
+JJ[SEM='action="negation"'] -> 'not'
+N[SEM='action="negation"'] -> 'none' | 'no_one'
+N[SEM='descriptor="color"'] -> 'color'
+N[SEM='certificate="Nordstrom note"'] -> 'nordstrom_note' | 'nordstrom_notes'
+N[SEM='reward_program="triple point"'] -> 'triple_point'  | 'triple_points'
+
+#JJ[SEM='descriptor="under"']-> 'under' | 'below' | 'less_than'
+#JJ[SEM='descriptor="over"']->  'over'  | 'above' | 'more_than'
+
+# RHS: should be handled automatically by lingiuistic methods
+JJ[SEM='descriptor="Richfield"'] -> "richfield's"
+
+N[SEM='confirmation="1"'] -> 'yes' | 'y' | 'yeah'
+N[SEM='confirmation="0"'] -> 'no'  | 'n' | 'nope'
+
+N[SEM='location="zipcode"'] -> 'zipcode' | 'zip_code'
+A[SEM='descriptor="location"'] -> 'locate' | 'located' | 'locates'
+A[SEM='descriptor="close"'] -> 'close' | 'closes' | 'closed' | 'closing'
+A[SEM='descriptor="open"'] -> 'open' | 'opens' | 'opened' | 'opening'
+A[SEM='action="find store"'] -> 'direct' | 'directs'
+JJ[SEM='descriptor="open"'] -> 'open' | 'opening' | 'opened'
+JJ[SEM='descriptor="close"'] -> 'close' | 'closing' | 'closed'
+JJ[SEM='descriptor="expensive"'] -> 'expensive' | 'costly' 
+JJ[SEM='descriptor="cheap"'] -> 'cheap' 
+N[SEM='descriptor="this"'] -> 'this' 
+N[SEM='check_avail="1"'] -> 'in_stock'
+JJ[SEM='check_avail="1"'] -> 'available'
+JJ[SEM='check_popular="1"'] -> 'popular'
+N[SEM='prior_subject="1"'] -> 'it' 
+JJ[SEM='prior_subject="1"'] -> 'its' 
+Det[SEM='prior_subject="1"'] -> 'this' | 'that' | 'the'
+P[SEM='descriptor="until"'] -> 'until'
+P[SEM='descriptor="before"'] -> 'before' 
+P[SEM='descriptor="after"'] -> 'after' 
+
+#A[SEM='action="look"'] -> 'looking' | 'look'
+#A[SEM='action="search"'] -> 'searching' | 'search'
+#A[SEM='action="shop"'] -> 'shopping' | 'shop'
+#A[SEM='action="go"'] -> 'go'   | 'goes' | 'went'
+#A[SEM='action="need"'] -> 'need'
+#A[SEM='action="carry"'] -> 'carry'
+#A[SEM='action="find"'] -> 'finding' | 'find'
+#A[SEM='action="buy"'] -> 'buy' | 'purchase'
+#A[SEM='action="sell"'] -> 'sell'
+#A[SEM='action="want"'] -> 'want'
+#A[SEM='action="see"'] -> 'see'
+#A[SEM='action="show"'] -> 'show'
+#A[SEM='action="know"'] -> 'know'
+#A[SEM='action="tell"'] -> 'tell'
+#A[SEM='action="have"'] -> 'have'
+#A[SEM='action="match"'] -> 'match'
+
+A[SEM='action="find"'] -> 'looking' | 'look'
+A[SEM='action="find"'] -> 'searching' | 'search'
+A[SEM='action="find"'] -> 'shopping' | 'shop'
+A[SEM='action="find"'] -> 'go'   | 'goes' | 'went'
+A[SEM='action="find"'] -> 'need'
+A[SEM='action="find"'] -> 'carry'
+A[SEM='action="find"'] -> 'found'  | 'finding' | 'find'
+A[SEM='action="find"'] -> 'bought' | 'buy' | 'purchase'
+A[SEM='action="find"'] -> 'sell'
+#A[SEM='action="like"'] -> 'like'
+A[SEM=''] -> 'like'
+A[SEM='action="find"'] -> 'want'
+A[SEM='action="find"'] -> 'see'
+A[SEM='action="find"'] -> 'show'
+A[SEM='action="find"'] -> 'know'
+A[SEM='action="find"'] -> 'tell'
+A[SEM='action="find"'] -> 'have'
+A[SEM='action="find"'] -> 'match'
+
+A[SEM=''] -> "expect_to" | "expects_to" | "expected_to"
+A[SEM=''] -> "like_to" | "likes_to" | "liked_to"
+A[SEM=''] -> "need_to" | "needs_to" | "needed_to"
+A[SEM=''] -> "want_to" | "wants_to" | "wanted_to"
+
+A[SEM='action="reset"'] -> 'resetting' | 'reset' | 'clear'
+A[SEM='action="unstop"'] -> 'unstop'
+A[SEM='action="start"'] -> 'start'
+A[SEM='action="guarantee"'] -> 'guarantee'
+
+N[SEM='location="Nordstrom Grill"'] -> 'nordstrom_grill'
+N[SEM='department="tbd"'] -> 'nordstrom_tbd' | 'tbd'
+N[SEM='facility="fitting room"'] -> 'fitting_rooms' | 'fitting_room' | 'changing_rooms' | 'changing_room' | 'dressing_rooms' | 'dressing_room'
+N[SEM='facility="bathroom"'] -> 'bathrooms' | 'bathroom' | 'bath_rooms' | 'bath_room'
+N[SEM='facility="restroom"'] -> 'restrooms' | 'restroom' | 'rest_rooms' | 'rest_room'
+N[SEM='facility="women\'s restroom"'] -> "women's_restrooms" | "women's_restroom" | "womens_restroom" | "ladies'_rooms" | "ladies'_room" | "ladies_room" | "powder_rooms" | "powder_room"
+N[SEM='facility="men\'s restroom"'] -> "men's_restrooms" | "men's_restroom" | "mens_restroom" | "gentlemen'_rooms" | "gentlemen's_room" | "men's_rooms" | "men's_room" | "mens_room"
+
+A[SEM='action="order"']  -> 'order'
+N[SEM='service="order"'] -> 'order' 
+A[SEM='action="schedule event"'] -> 'reserve' | 'make_reservation' | 'schedule'
+N[SEM='action="schedule event"'] -> 'reservation' | 'appointment' 
+N[SEM='service="massage"'] -> 'massage' 
+JJ[SEM='descriptor="styling"'] -> 'styling' | 'stylish' | 'fashionable'
+
+
+Det[SEM='question="how"']  -> 'how'
+Det[SEM='question="why"']  -> 'why'
+#Det[SEM=''] -> 'what'
+Det[SEM='question="what"']  -> 'what'
+
+T[SEM=''] -> 'a' | 'an'
+
+IV[SEM=''] -> 'am'   | 'is'   | 'was' | 'be'
+IV[SEM=''] -> 'are'  | 'were'
+IV[SEM=''] -> 'can'  | 'could'
+IV[SEM=''] -> 'do'   | 'does' | 'did'
+IV[SEM=''] -> 'equal'| 'equals' | 'equaled'
+IV[SEM=''] -> 'may'  | 'might'
+IV[SEM=''] -> 'shall'| 'should'
+IV[SEM=''] -> 'will' | 'would'
+IV[SEM=''] -> 'have' | 'has'  | 'had'
+
+A[SEM=''] -> 'am'   | 'is'   | 'was'
+A[SEM=''] -> 'are'  | 'were'
+A[SEM=''] -> 'do'   | 'does' | 'did'
+A[SEM=''] -> 'equal' | 'equals'  | 'equaled'
+A[SEM=''] -> 'get'  | 'gets' | 'got'
+A[SEM=''] -> 'have' | 'has'  | 'had'
+A[SEM=''] -> 'make' | 'makes'  | 'made'
+A[SEM='action="need help"'] -> 'help' | 'helps'  | 'helped'
+A[SEM=''] -> 'expect_to'   | 'like_to'    | 'need_to'  | 'want_to'
+A[SEM=''] -> 'expects_to'  | 'likes_to'   | 'needs_to' | 'wants_to'
+A[SEM=''] -> 'expected_to' | 'liked_to'   | 'needed_to' | 'wantd_to'
+
+N[SEM='greeting="hello"'] -> "hi" | "hello"
+N[SEM=''] -> "i" | "i'm"
+N[SEM=''] -> "one" | "ones"
+N[SEM=''] -> "me"
+N[SEM=''] -> "you"
+N[SEM=''] -> 'something' | 'anything' | 'someone' | 'anyone' | 'day' | 'here' | 'there' | 'kind'
+N[SEM=''] -> 'match'
+N[SEM=''] -> 'sale'
+N[SEM=''] -> 'size'
+N[SEM=''] -> 'bye' | 'goodbye' | 'ciao' | 'adios'
+P[SEM=''] -> 'for' | 'of' | 'to' | 'in' | 'about' | 'around' | 'with' | 'equal' | 'between' | 'than' 
+#P[SEM='action="find store"'] -> 'near' | 'nearest' | 'closest' | 'close_to'
+P[SEM='action="ask place"'] -> 'near' | 'nearest' | 'closest' | 'close_to'
+JJ[SEM=''] -> 'some' | 'any' | 'interested' | 'interesting' | 'approximate' | 'approx' | 'approx.' | 'equal' | 'equivalent'
+JJ[SEM=''] -> 'new' | 'like' | 'sized' | 'colored' | 'equivalent' | 'wonderful' | 'nice' | 'sweet' | 'gorgeous' | 'momentary' 
+JJ[SEM=''] -> 'my' | 'your' | 'his' | 'her' | 'their'
+#AD[SEM='action="find store"'] -> 'nearby'
+AD[SEM='action="ask place"'] -> 'nearby'
+AD[SEM='descriptor="before"'] -> 'before'
+AD[SEM='descriptor="after"'] -> 'after'
+AD[SEM='descriptor="about"'] -> 'about' | 'around' | 'approximately' |'approx' | 'approx.' | 'equivalently' | 'momentiarily'
+AD[SEM='descriptor="between"'] -> 'between'
+CC[SEM=''] -> 'and' | 'than'
